@@ -1,0 +1,29 @@
+{
+  "name": "food-ordering-system",
+  "version": "1.0.0",
+  "description": "Food ordering system with login and menu management",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ejs": "^3.1.10",
+    "body-parser": "*",
+    "cookie-session": "*",
+    "mongodb": "6.9.0",
+    "mongoose": "^8.6.0",
+    "method-override": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "keywords": ["food", "ordering", "login", "crud", "mongodb"],
+  "author": "Group 16",
+  "license": "MIT",
+  "engine": "node >= 16.0.0"
+}
+

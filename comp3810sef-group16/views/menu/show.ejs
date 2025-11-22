@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= item.name %> - Food Ordering System</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="/menu">Menu Management</a> / <span><%= item.name %></span>
+  </nav>
+  
+  <a class="btn btn-secondary" href="/menu">← Back to Menu</a>
+  
+  <div class="dish-detail">
+    <% if (item.imageUrl) { %>
+      <img class="hero" src="<%= item.imageUrl %>" alt="<%= item.name %>" onerror="this.style.display='none'">
+    <% } else { %>
+      <div class="hero placeholder">🍽️</div>
+    <% } %>
+    
+    <h1><%= item.name %></h1>
+    
+    <p class="muted">
+      <strong>Category:</strong> <%= item.category %> • 
+      <strong>Status:</strong> <%= item.available ? '🟢 Available' : '🔴 Unavailable' %>
+    </p>
+    
+    <h2 class="price">$<%= item.price.toFixed(2) %></h2>
+    
+    <div class="description">
+      <h3>Description</h3>
+      <p><%= item.description || 'No description available for this dish.' %></p>
+    </div>
+
+    <div class="meta-info muted">
+      <p>Created: <%= item.createdAt.toLocaleString() %></p>
+      <p>Last Updated: <%= item.updatedAt.toLocaleString() %></p>
+    </div>
+
+    <div class="row gap">
+      <a class="btn" href="/menu/<%= item._id %>/edit">✏️ Edit</a>
+      <form method="post" action="/menu/<%= item._id %>?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete &quot;<%= item.name %>&quot;? This action cannot be undone.');">
+        <button class="btn btn-danger" type="submit">🗑️ Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

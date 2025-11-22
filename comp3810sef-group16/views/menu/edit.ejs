@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit <%= item.name %> - Food Ordering System</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="/menu">Menu Management</a> / <a href="/menu/<%= item._id %>"><%= item.name %></a> / <span>Edit</span>
+  </nav>
+  
+  <h1>✏️ Edit <%= item.name %></h1>
+  
+  <form class="stack" method="post" action="/menu/<%= item._id %>?_method=PUT">
+    <label>
+      Dish Name *
+      <input name="name" value="<%= item.name %>" required maxlength="100">
+    </label>
+    
+    <label>
+      Category *
+      <input name="category" value="<%= item.category %>" required maxlength="50">
+    </label>
+    
+    <label>
+      Price (USD) *
+      <input name="price" type="number" step="0.01" min="0" max="10000" value="<%= item.price %>" required>
+    </label>
+    
+    <label>
+      Image URL
+      <input name="imageUrl" type="url" value="<%= item.imageUrl %>">
+    </label>
+    
+    <label>
+      Description
+      <textarea name="description" rows="5" maxlength="500"><%= item.description %></textarea>
+    </label>
+    
+    <label class="row gap">
+      <input type="checkbox" name="available" <%= item.available ? 'checked' : '' %>> Available
+    </label>
+    
+    <div class="row gap">
+      <button class="btn" type="submit">💾 Save</button>
+      <a class="btn btn-secondary" href="/menu">❌ Cancel</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>
+

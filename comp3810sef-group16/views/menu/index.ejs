@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Management - Food Ordering System</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="container row space-between">
+  <h1>🍽️ Menu Management</h1>
+  <nav class="row gap">
+    <a class="btn" href="/menu/new">➕ Add Dish</a>
+    <a class="btn btn-secondary" href="/">Home</a>
+    <a class="btn btn-secondary" href="/logout">Logout</a>
+  </nav>
+</header>
+
+<section class="container">
+  <!-- Search and filters form -->
+  <form class="filters row wrap gap" method="get" action="/menu">
+    <input type="text" name="q" placeholder="Search by name or description..." value="<%= q %>">
+    <select name="category">
+      <option value="">All Categories</option>
+      <% (categories || []).forEach(c => { %>
+        <option value="<%= c %>" <%= category === c ? 'selected' : '' %>><%= c %></option>
+      <% }) %>
+    </select>
+    <input type="number" name="min" step="0.01" placeholder="Min price" value="<%= min %>">
+    <input type="number" name="max" step="0.01" placeholder="Max price" value="<%= max %>">
+    <select name="available">
+      <option value="">Any Status</option>
+      <option value="true" <%= available === 'true' ? 'selected' : '' %>>Available</option>
+      <option value="false" <%= available === 'false' ? 'selected' : '' %>>Unavailable</option>
+    </select>
+    <input type="number" name="limit" min="3" max="48" value="<%= limit %>" title="Items per page">
+    <button class="btn" type="submit">🔍 Filter</button>
+    <a class="btn btn-secondary" href="/menu">🔄 Reset</a>
+  </form>
+
+  <!-- Statistics -->
+  <p class="muted">Total items: <strong><%= total %></strong></p>
+
+  <!-- Menu items grid -->
+  <% if (items.length === 0) { %>
+    <div class="empty-state">
+      <h3>No menu items found</h3>
+      <p>Try adjusting your search or <a href="/menu/new">add a new dish</a></p>
+    </div>
+  <% } else { %>
+    <ul class="card-grid">
+      <% items.forEach(item => { %>
+        <li class="card">
+          <% if (item.imageUrl) { %>
+            <img class="thumb" src="<%= item.imageUrl %>" alt="<%= item.name %>" onerror="this.style.display='none'">
+          <% } else { %>
+            <div class="thumb placeholder">🍴</div>
+          <% } %>
+          <div class="card-body">
+            <div class="row space-between">
+              <h3><a href="/menu/<%= item._id %>"><%= item.name %></a></h3>
+              <span class="price">$<%= item.price.toFixed(2) %></span>
+            </div>
+            <p class="muted"><%= item.category %> • <%= item.available ? '🟢 Available' : '🔴 Unavailable' %></p>
+            <p class="description"><%= (item.description || '').slice(0,120) %><%= (item.description && item.description.length > 120) ? '…' : '' %></p>
+            <div class="row gap">
+              <a class="btn btn-secondary" href="/menu/<%= item._id %>/edit">✏️ Edit</a>
+              <form method="post" action="/menu/<%= item._id %>?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete &quot;<%= item.name %>&quot;?');">
+                <button class="btn btn-danger" type="submit">🗑️ Delete</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+
+    <!-- Pagination -->
+    <% 
+      const totalPages = Math.ceil(total / limit) || 1;
+      if (totalPages > 1) { 
+    %>
+      <div class="pagination row gap">
+        <% for (let p = 1; p <= totalPages; p++) { %>
+          <%
+            const queryParams = new URLSearchParams({
+              q: q || '',
+              category: category || '',
+              min: min || '',
+              max: max || '',
+              available: available || '',
+              page: p,
+              limit: limit
+            }).toString();
+          %>
+          <a class="btn <%= p === page ? 'btn-primary' : 'btn-secondary' %>"
+             href="/menu?<%= queryParams %>"><%= p %></a>
+        <% } %>
+      </div>
+    <% } %>
+  <% } %>
+</section>
+
+<footer class="container">
+  <p class="muted text-center">© 2024 Food Ordering System - CRUD Demo Application</p>
+</footer>
+</body>
+</html>
+
