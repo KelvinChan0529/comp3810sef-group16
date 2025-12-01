@@ -127,7 +127,7 @@
 <p><strong>Order.js:</strong><br>It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.</p>
 
 <p style="margin-top:60px;"><strong>The cloud-based server URL</strong><br>
-https://github.com/KelvinChan0529/comp3810sef-group16</p>
+https://comp3810sef-group16.onrender.com/</p>
 
 </body>
 </html>
