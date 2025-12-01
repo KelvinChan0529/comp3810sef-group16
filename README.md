@@ -1,158 +1,133 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="en">
 <body>
 
 <h1>Food Ordering System</h1>
 
-<div class="group-info">
-    <h2>COMP 3810SEF - Group16</h2>
-    <p><strong>組員學號：</strong></p>
-    <p style="font-size:1.3em;">
-        13909071<br>
-        14083334<br>
-        14029274　<span style="margin-left:20px;">Chan Chun Wa</span><br>
+<div class="group-box center">
+    <h2>Group information:</h2>
+    <p><strong>COMP 3810SEF - Group16</strong></p>
+    <div class="student">
+        13909071<br><br>
+        14083334<br><br>
+        14029274 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chan Chun Wa<br><br>
         13987313
-    </p>
+    </div>
 </div>
 
 <h2>Project file introduction</h2>
 
 <h3>package.json</h3>
 <table>
-    <thead>
-        <tr>
-            <th>Package</th>
-            <th>Version</th>
-            <th>Purpose</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr><td>express</td><td>^4.19.2</td><td>Web framework for Node.js</td></tr>
-        <tr><td>ejs</td><td>^3.1.10</td><td>Template engine for rendering views</td></tr>
-        <tr><td>body-parser</td><td>* (latest)</td><td>Parse incoming request bodies</td></tr>
-        <tr><td>cookie-session</td><td>* (latest)</td><td>Session middleware using cookies</td></tr>
-        <tr><td>mongodb</td><td>6.9.0</td><td>Official MongoDB driver</td></tr>
-        <tr><td>mongoose</td><td>^8.6.0</td><td>ODM for MongoDB</td></tr>
-        <tr><td>method-override</td><td>^3.0.0</td><td>Allows using HTTP verbs in forms</td></tr>
-    </tbody>
+    <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+    <tr><td>express</td><td>^4.19.2</td><td>Web framework for Node.js</td></tr>
+    <tr><td>ejs</td><td>^3.1.10</td><td>Template engine for rendering views</td></tr>
+    <tr><td>body-parser</td><td>* (latest)</td><td>Parse incoming request bodies</td></tr>
+    <tr><td>cookie-session</td><td>* (latest)</td><td>Session middleware using cookies</td></tr>
+    <tr><td>mongodb</td><td>6.9.0</td><td>Official MongoDB driver</td></tr>
+    <tr><td>mongoose</td><td>^8.6.0</td><td>ODM for MongoDB</td></tr>
+    <tr><td>method-override</td><td>^3.0.0</td><td>Allows using HTTP verbs in forms</td></tr>
 </table>
 
-<h3>server.js 主要功能</h3>
-
-<h4>User Authentication & Session Management</h4>
+<h3>server.js</h3>
+<p><strong>User Authentication & Session Management</strong></p>
 <ul>
     <li>Register new account</li>
     <li>Login / Logout</li>
-    <li>Session-based authentication (using <span class="code">cookie-session</span>)</li>
+    <li>Session-based authentication (using cookie-session)</li>
     <li>Protected routes — only logged-in users can access menu, ordering, etc.</li>
-    <li>Redirects unauthenticated users to <span class="code">/login</span></li>
+    <li>Redirects unauthenticated users to /login</li>
 </ul>
 
-<h4>Menu Management（Admin/Staff Features）</h4>
+<p><strong>Menu Management</strong></p>
 <ul>
-    <li>View all menu items with <strong>search, filter by category, price range, availability</strong>, and <strong>pagination</strong></li>
+    <li>Admin/Staff Features (requires login):</li>
+    <li>View all menu items with search, filter by category, price range, availability, and pagination</li>
     <li>Add new food items</li>
     <li>Edit existing items</li>
     <li>Delete items</li>
     <li>View item details</li>
-    <li>Web routes: <span class="code">/menu</span>, <span class="code">/menu/new</span>, <span class="code">/menu/:id/edit</span>, etc.</li>
-    <li>Full RESTful API available under <span class="code">/api/menu</span>:
-        <ul>
-            <li>Create, read, update, delete by ID or name</li>
-        </ul>
-    </li>
+    <li>Web routes: /menu, /menu/new, /menu/:id/edit, etc.</li>
+    <li>Full RESTful API available under /api/menu:</li>
+    <li>Create, read, update, delete by ID or name</li>
 </ul>
 
-<h4>Customer Ordering System</h4>
+<p><strong>Customer Ordering System</strong></p>
 <ul>
-    <li>Browse only <strong>available</strong> food items</li>
+    <li>Browse only available food items</li>
     <li>Add items to cart</li>
     <li>Update quantity or remove items from cart</li>
     <li>Clear entire cart</li>
-    <li>Submit order → saves to MongoDB with:
-        <ul>
-            <li>Username</li>
-            <li>Full cart details</li>
-            <li>Total price</li>
-            <li>Timestamp & "pending" status</li>
-        </ul>
-    </li>
-    <li>Cart is stored in <span class="code">session</span></li>
+    <li>Submit order to saves to MongoDB with:</li>
+    <li>Username</li>
+    <li>Full cart details</li>
+    <li>Total price</li>
+    <li>Timestamp & "pending" status</li>
+    <li>Cart is stored in session</li>
 </ul>
 
-<h4>Database Setup</h4>
+<p><strong>Database Setup</strong></p>
 <ul>
-    <li>Two MongoDB connections:
-        <ul>
-            <li>One for user login (MongoDB driver + <mark>login</mark> database)</li>
-            <li>One for menu & orders (Mongoose + <mark>food-ordering</mark> database)</li>
-        </ul>
-    </li>
-    <li>Uses Mongoose models: <span class="code">MenuItem</span> and <span class="code">Order</span></li>
+    <li>Two MongoDB connections:</li>
+    <li>One for user login (MongoDB driver + login database)</li>
+    <li>One for menu & orders (Mongoose + food-ordering database)</li>
+    <li>Uses Mongoose models: MenuItem and Order</li>
 </ul>
 
 <h3>views folder</h3>
+<p><strong>login.ejs & register.ejs:</strong><br>Complete user onboarding flow (register → login)</p>
 
+<p><strong>homepage.ejs:</strong><br>The main navigation gateway for authenticated users in the food ordering system.<br>Customer Mode: Browse and order food<br>Admin Mode: Manage the menu (CRUD operations)</p>
+
+<p><strong>order.ejs:</strong><br>Browse Menu by Category<br>Visual Item Cards<br>Real-Time Shopping Cart Sidebar<br>Interactive Actions - Add to cart, Update quantity, Remove item, Submit final order, saves to database and clears cart</p>
+
+<p><strong>menu folder include (edit.ejs & index.ejs & new.ejs & show.ejs)</strong></p>
+<p><strong>index.ejs:</strong></p>
 <ul>
-    <li><strong>login.ejs & register.ejs</strong>: Complete user onboarding flow (register → login)</li>
-    <li><strong>homepage.ejs</strong>: The main navigation gateway for authenticated users
-        <ul>
-            <li>Customer Mode: Browse and order food</li>
-            <li>Admin Mode: Manage the menu (CRUD operations)</li>
-        </ul>
-    </li>
-    <li><strong>order.ejs</strong>:
-        <ul>
-            <li>Browse Menu by Category</li>
-            <li>Visual Item Cards</li>
-            <li>Real-Time Shopping Cart Sidebar</li>
-            <li>Interactive Actions - Add to cart, Update quantity, Remove item, Submit final order, saves to database and clears cart</li>
-        </ul>
-    </li>
+    <li>Full-featured search & filtering (by name, category, price range, availability, items per page)</li>
+    <li>Pagination with preserved filters</li>
+    <li>Card grid layout with thumbnails</li>
+    <li>Quick Edit and Delete buttons per item</li>
+    <li>Statistics (total items)</li>
+    <li>"Add Dish" button + Reset filters</li>
 </ul>
 
-<h4>menu folder include (edit.ejs & index.ejs & new.ejs & show.ejs)</h4>
-
+<p><strong>new.ejs:</strong></p>
 <ul>
-    <li><strong>index.ejs</strong>:
-        <ul>
-            <li>Full-featured search & filtering (by name, category, price range, availability, items per page)</li>
-            <li>Pagination with preserved filters</li>
-            <li>Card grid layout with thumbnails</li>
-            <li>Quick Edit and Delete buttons per item</li>
-            <li>Statistics (total items)</li>
-            <li>"Add Dish" button + Reset filters</li>
-        </ul>
-    </li>
-    <li><strong>new.ejs</strong>: Create new menu item form（所有必填欄位 + 圖片 URL、描述、預設可用）</li>
-    <li><strong>edit.ejs</strong>: Update existing item form（預填目前資料）</li>
-    <li><strong>show.ejs</strong>:
-        <ul>
-            <li>Detailed view of a single dish</li>
-            <li>Large hero image</li>
-            <li>Price, category, availability status, full description</li>
-            <li>Creation & update timestamps</li>
-            <li>Direct Edit and Delete buttons</li>
-        </ul>
-    </li>
+<ul>
+    <li>Create new menu item form</li>
+    <li>All required fields (name, category, price) + optional image URL, description</li>
+    <li>"Available" checkbox checked by default</li>
+    <li>Layout with placeholders</li>
 </ul>
 
-<h4>UI files</h4>
+<p><strong>edit.ejs:</strong></p>
 <ul>
-    <li><span class="code">style.css</span> → 用於 Login / Register / Homepage（公開頁面）</li>
-    <li><span class="code">styles.css</span> → 用於所有需要登入的內部頁面（/order, /menu 等）</li>
+    <li>Update existing item form (pre-filled with current data)</li>
+    <li>Same fields as create + current values preserved</li>
 </ul>
+
+<p><strong>show.ejs:</strong></p>
+<ul>
+    <li>Detailed view of a single dish</li>
+    <li>Large hero image</li>
+    <li>Price, category, availability status, full description</li>
+    <li>Creation & update timestamps</li>
+    <li>Direct Edit and Delete buttons</li>
+</ul>
+
+<h3>UI files include (style.css & styles.css)</h3>
+<p><strong>style.css:</strong><br>Used exclusively for Login / Register / Homepage (the public/auth pages)</p>
+
+<p><strong>styles.css:</strong><br>Used for all internal authenticated pages (/order, /menu, etc.)</p>
 
 <h3>models folder</h3>
-<ul>
-    <li><strong>MenuItem.js</strong>: Mongoose model 含完整驗證、高效索引、支援文字搜尋</li>
-    <li><strong>Order.js</strong>: 完整訂單生命週期狀態追蹤、物品快照（denormalized）、參照關係、最佳化索引</li>
-</ul>
+<p><strong>MenuItem.js:</strong><br>It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.</p>
 
-<p style="text-align:center; margin-top:60px; color:#7f8c8d;">
-    COMP3810 Software Engineering Fundamentals – Group 16<br>
-    Food Ordering System Documentation
-</p>
+<p><strong>Order.js:</strong><br>It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.</p>
+
+<p style="margin-top:60px;"><strong>The cloud-based server URL</strong><br>
+https://github.com/KelvinChan0529/comp3810sef-group16</p>
 
 </body>
 </html>
