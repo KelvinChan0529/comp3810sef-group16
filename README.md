@@ -113,16 +113,20 @@
 - **MenuItem.js**: It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.
 - **Order.js**: It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.
 
-## Live Demo
 
-**The cloud-based server URL**  
+### The cloud-based server URL
 https://comp3810sef-group16.onrender.com/
 
 ## Operation Guides
 
 ### Admin Account
+```bash 
 username : guest
+```
+
+```bash 
 password : guest
+```
 
 ### 1. Login Steps
 - Input username and password.
@@ -175,12 +179,15 @@ password : guest
 > **Note**: All APIs run in a Linux environment, using the Windows command prompt (cmd) directly may cause errors.
 
 ### Login
+```bash
 curl -X POST https://comp3810sef-group16.onrender.com/login \
  -d "name=guest&password=guest" \
  -c cookies.txt
+```
 
 ### Create - POST
 - Create menu item:
+```bash
 curl -b cookies.txt -X POST https://comp3810sef-group16.onrender.com/api/menu \
  -H "Content-Type: application/json" \
  -d '{
@@ -191,18 +198,24 @@ curl -b cookies.txt -X POST https://comp3810sef-group16.onrender.com/api/menu \
   "imageUrl": "https://www.bellanaija.com/wp-content/uploads/2021/07/maxresdefault-43.jpeg?w=300",
   "available": true
  }' -i
+```
 
 ### Read - GET
 - Get all menu items:
+```bash
 curl -b cookies.txt -X GET https://comp3810sef-group16.onrender.com/api/menu \
  -H "Accept: application/json" -i
+```
 
 - Get menu item by name:
+```bash
 curl -b cookies.txt -X GET https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice \
  -H "Accept: application/json" -i
+```
 
 ### Update - PUT
-- Modify an existing menu item:
+- Modify an existing menu item:\
+```bash
 curl -b cookies.txt -X PUT https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice \
   -H "Content-Type: application/json" \
   -d '{
@@ -212,8 +225,10 @@ curl -b cookies.txt -X PUT https://comp3810sef-group16.onrender.com/api/menu/nam
     "imageUrl": "https://media.istockphoto.com/id/1419865456/photo/glass-of-apple-cider-with-autumn-background.jpg?s=612x612&w=0&k=20&c=qycAGVA3AUgpO86zAd2eEqgoWoxR0b4s5Uu7RVgmRKw=",
     "available": true
   }' -i
+```
 
 ### Delete - DELETE
-- Remove a menu item by name
+- Remove a menu item by name:
+```bash
 curl -b cookies.txt -X DELETE https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice -i
-
+```
