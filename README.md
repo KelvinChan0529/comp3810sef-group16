@@ -1,133 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
+# Food Ordering System
 
-<h1>Food Ordering System</h1>
+## Group Information
 
-<div class="group-box center">
-    <h2>Group information:</h2>
-    <p><strong>COMP 3810SEF - Group16</strong></p>
-    <div class="student">
-        13909071<br><br>
-        14083334<br><br>
-        14029274 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chan Chun Wa<br><br>
-        13987313
-    </div>
-</div>
+**COMP 3810SEF - Group16**
 
-<h2>Project file introduction</h2>
+| Student ID | Name                  |
+|------------|-----------------------|
+| 13909071   |                       |
+| 14083334   | Poon Hung Man         |
+| 14029274   | Chan Chun Wa          |
+| 13987313   | Leung Cheuk Hang Cairns |
 
-<h3>package.json</h3>
-<table>
-    <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
-    <tr><td>express</td><td>^4.19.2</td><td>Web framework for Node.js</td></tr>
-    <tr><td>ejs</td><td>^3.1.10</td><td>Template engine for rendering views</td></tr>
-    <tr><td>body-parser</td><td>* (latest)</td><td>Parse incoming request bodies</td></tr>
-    <tr><td>cookie-session</td><td>* (latest)</td><td>Session middleware using cookies</td></tr>
-    <tr><td>mongodb</td><td>6.9.0</td><td>Official MongoDB driver</td></tr>
-    <tr><td>mongoose</td><td>^8.6.0</td><td>ODM for MongoDB</td></tr>
-    <tr><td>method-override</td><td>^3.0.0</td><td>Allows using HTTP verbs in forms</td></tr>
-</table>
+## Project File Introduction
 
-<h3>server.js</h3>
-<p><strong>User Authentication & Session Management</strong></p>
-<ul>
-    <li>Register new account</li>
-    <li>Login / Logout</li>
-    <li>Session-based authentication (using cookie-session)</li>
-    <li>Protected routes — only logged-in users can access menu, ordering, etc.</li>
-    <li>Redirects unauthenticated users to /login</li>
-</ul>
+### package.json
 
-<p><strong>Menu Management</strong></p>
-<ul>
-    <li>Admin/Staff Features (requires login):</li>
-    <li>View all menu items with search, filter by category, price range, availability, and pagination</li>
-    <li>Add new food items</li>
-    <li>Edit existing items</li>
-    <li>Delete items</li>
-    <li>View item details</li>
-    <li>Web routes: /menu, /menu/new, /menu/:id/edit, etc.</li>
-    <li>Full RESTful API available under /api/menu:</li>
-    <li>Create, read, update, delete by ID or name</li>
-</ul>
+| Package          | Version      | Purpose                                              |
+|------------------|--------------|------------------------------------------------------|
+| express          | ^4.19.2      | Web framework for Node.js                            |
+| ejs              | ^3.1.10      | Template engine for rendering views                  |
+| body-parser      | * (latest)   | Parse incoming request bodies                        |
+| cookie-session   | * (latest)   | Session middleware using cookies                     |
+| mongodb          | 6.9.0        | Official MongoDB driver                              |
+| mongoose         | ^8.6.0       | ODM for MongoDB                                      |
+| method-override  | ^3.0.0       | Allows using HTTP verbs in forms                     |
 
-<p><strong>Customer Ordering System</strong></p>
-<ul>
-    <li>Browse only available food items</li>
-    <li>Add items to cart</li>
-    <li>Update quantity or remove items from cart</li>
-    <li>Clear entire cart</li>
-    <li>Submit order to saves to MongoDB with:</li>
-    <li>Username</li>
-    <li>Full cart details</li>
-    <li>Total price</li>
-    <li>Timestamp & "pending" status</li>
-    <li>Cart is stored in session</li>
-</ul>
+### server.js
 
-<p><strong>Database Setup</strong></p>
-<ul>
-    <li>Two MongoDB connections:</li>
-    <li>One for user login (MongoDB driver + login database)</li>
-    <li>One for menu & orders (Mongoose + food-ordering database)</li>
-    <li>Uses Mongoose models: MenuItem and Order</li>
-</ul>
+#### User Authentication & Session Management
+- Register new account
+- Login / Logout
+- Session-based authentication (using cookie-session)
+- Protected routes — only logged-in users can access menu, ordering, etc.
+- Redirects unauthenticated users to /login
 
-<h3>views folder</h3>
-<p><strong>login.ejs & register.ejs:</strong><br>Complete user onboarding flow (register → login)</p>
+#### Menu Management
+**Admin/Staff Features (requires login):**
+- View all menu items with search, filter by category, price range, availability, and pagination
+- Add new food items
+- Edit existing items
+- Delete items
+- View item details
+- Web routes: `/menu`, `/menu/new`, `/menu/:id/edit`, etc.
+- Full RESTful API available under `/api/menu`:
+  - Create, read, update, delete by ID or name
 
-<p><strong>homepage.ejs:</strong><br>The main navigation gateway for authenticated users in the food ordering system.<br>Customer Mode: Browse and order food<br>Admin Mode: Manage the menu (CRUD operations)</p>
+#### Customer Ordering System
+- Browse only available food items
+- Add items to cart
+- Update quantity or remove items from cart
+- Clear entire cart
+- Submit order to saves to MongoDB with:
+  - Username
+  - Full cart details
+  - Total price
+  - Timestamp & "pending" status
+- Cart is stored in session
 
-<p><strong>order.ejs:</strong><br>Browse Menu by Category<br>Visual Item Cards<br>Real-Time Shopping Cart Sidebar<br>Interactive Actions - Add to cart, Update quantity, Remove item, Submit final order, saves to database and clears cart</p>
+#### Database Setup
+- Two MongoDB connections:
+  - One for user login (MongoDB driver + login database)
+  - One for menu & orders (Mongoose + food-ordering database)
+- Uses Mongoose models: `MenuItem` and `Order`
 
-<p><strong>menu folder include (edit.ejs & index.ejs & new.ejs & show.ejs)</strong></p>
-<p><strong>index.ejs:</strong></p>
-<ul>
-    <li>Full-featured search & filtering (by name, category, price range, availability, items per page)</li>
-    <li>Pagination with preserved filters</li>
-    <li>Card grid layout with thumbnails</li>
-    <li>Quick Edit and Delete buttons per item</li>
-    <li>Statistics (total items)</li>
-    <li>"Add Dish" button + Reset filters</li>
-</ul>
+### views folder
 
-<p><strong>new.ejs:</strong></p>
-<ul>
-<ul>
-    <li>Create new menu item form</li>
-    <li>All required fields (name, category, price) + optional image URL, description</li>
-    <li>"Available" checkbox checked by default</li>
-    <li>Layout with placeholders</li>
-</ul>
+- `login.ejs` & `register.ejs`: Complete user onboarding flow (register → login)
+- `homepage.ejs`: The main navigation gateway for authenticated users in the food ordering system.
+  - Customer Mode: Browse and order food
+  - Admin Mode: Manage the menu (CRUD operations)
 
-<p><strong>edit.ejs:</strong></p>
-<ul>
-    <li>Update existing item form (pre-filled with current data)</li>
-    <li>Same fields as create + current values preserved</li>
-</ul>
+- `order.ejs`:
+  - Browse Menu by Category
+  - Visual Item Cards
+  - Real-Time Shopping Cart Sidebar
+  - Interactive Actions - Add to cart, Update quantity, Remove item, Submit final order, saves to database and clears cart
 
-<p><strong>show.ejs:</strong></p>
-<ul>
-    <li>Detailed view of a single dish</li>
-    <li>Large hero image</li>
-    <li>Price, category, availability status, full description</li>
-    <li>Creation & update timestamps</li>
-    <li>Direct Edit and Delete buttons</li>
-</ul>
+- **menu folder** (`edit.ejs` & `index.ejs` & `new.ejs` & `show.ejs`)
 
-<h3>UI files include (style.css & styles.css)</h3>
-<p><strong>style.css:</strong><br>Used exclusively for Login / Register / Homepage (the public/auth pages)</p>
+  - **index.ejs**:
+    - Full-featured search & filtering (by name, category, price range, availability, items per page)
+    - Pagination with preserved filters
+    - Card grid layout with thumbnails
+    - Quick Edit and Delete buttons per item
+    - Statistics (total items)
+    - "Add Dish" button + Reset filters
 
-<p><strong>styles.css:</strong><br>Used for all internal authenticated pages (/order, /menu, etc.)</p>
+  - **new.ejs**:
+    - Create new menu item form
+    - All required fields (name, category, price) + optional image URL, description
+    - "Available" checkbox checked by default
+    - Layout with placeholders
 
-<h3>models folder</h3>
-<p><strong>MenuItem.js:</strong><br>It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.</p>
+  - **edit.ejs**:
+    - Update existing item form (pre-filled with current data)
+    - Same fields as create + current values preserved
 
-<p><strong>Order.js:</strong><br>It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.</p>
+  - **show.ejs**:
+    - Detailed view of a single dish
+    - Large hero image
+    - Price, category, availability status, full description
+    - Creation & update timestamps
+    - Direct Edit and Delete buttons
 
-<p style="margin-top:60px;"><strong>The cloud-based server URL</strong><br>
-https://comp3810sef-group16.onrender.com/</p>
+### UI files
 
-</body>
-</html>
+- `style.css`: Used exclusively for Login / Register / Homepage (the public/auth pages)
+- `styles.css`: Used for all internal authenticated pages (/order, /menu, etc.)
+
+### models folder
+
+- `MenuItem.js`: It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.
+- `Order.js`: It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.
+
+## Live Demo
+
+**The cloud-based server URL**  
+https://comp3810sef-group16.onrender.com/
+
+## Operation Guides
+
+### Admin Account
+username : guest
+password : guest
+
+### 1. Login Steps
+- Input username and password.
+- If login fails (username or password incorrect), will show "Invalid username or password" on the page.
+
+### 2. After Login
+- You will be redirected to the food order page.
+- Under the middle shows a Logout button.
+
+### 3. Logout
+- Click the "Logout" button in the middle.
+- Back to the Login page
+
+### CRUD Web Pages
+
+#### Create
+1. Login as an admin user.
+2. Click "MENU MANAGEMENT" on the home page.
+3. Click “+Add Dish” in MENU MANAGEMENT page.
+4. Enter the “Dish Name, Category, Price(USD), Image URL and Description” and click "Create".
+
+#### Read
+1. Login as an admin user.
+2. Click "MENU MANAGEMENT" on the home page.
+3. In the MENU MANAGEMENT page will show all the food
+4. You can Search by (FoodName, Categories, min/max price and status).
+5. You can Click "Filter" to show the food you want to find.
+
+#### Order (Customer)
+1. In the Order Food page will show all the food
+2. You can view all the food from top to bottom.
+3. You can select different categories to purchase the items you like.
+4. You click the “+Add to Cart” button, then you will see the product appear in “Your Cart”.
+5. After you have selected your items, you can press the "Place order" button to complete the purchase.
+
+#### Update
+1. Login as admin.
+2. Click "MENU MANAGEMENT" on the home page.
+3. If you want to change the product details, click “Edit”.
+4. Modify the data and click "Save".
+
+#### Delete
+1. Login as admin.
+2. Click "MENU MANAGEMENT" on the home page.
+3. On the MENU MANAGEMENT page, choose a food and click the Delete icon.
+4. The food will be removed.
+
+## RESTful CRUD Services
+
+> **Note**: All APIs run in a Linux environment, using the Windows command prompt (cmd) directly may cause errors.
+
+### Login
+curl -X POST https://comp3810sef-group16.onrender.com/login \
+ -d "name=guest&password=guest" \
+ -c cookies.txt
+
+### Create - POST
+- Create menu item:
+curl -b cookies.txt -X POST https://comp3810sef-group16.onrender.com/api/menu \
+ -H "Content-Type: application/json" \
+ -d '{
+  "name": "Apple Juice",
+  "category": "Drinks",
+  "price": 3.50,
+  "description": "Fresh apple juice",
+  "imageUrl": "https://www.bellanaija.com/wp-content/uploads/2021/07/maxresdefault-43.jpeg?w=300",
+  "available": true
+ }' -i
+
+### Read - GET
+- Get all menu items:
+curl -b cookies.txt -X GET https://comp3810sef-group16.onrender.com/api/menu \
+ -H "Accept: application/json" -i
+
+- Get menu item by name:
+curl -b cookies.txt -X GET https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice \
+ -H "Accept: application/json" -i
+
+### Update - PUT
+- Modify an existing menu item:
+curl -b cookies.txt -X PUT https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice \
+  -H "Content-Type: application/json" \
+  -d '{
+    "category": "Drinks",
+    "price": 10.00,
+    "description": "Fresh apple juice (updated)",
+    "imageUrl": "https://media.istockphoto.com/id/1419865456/photo/glass-of-apple-cider-with-autumn-background.jpg?s=612x612&w=0&k=20&c=qycAGVA3AUgpO86zAd2eEqgoWoxR0b4s5Uu7RVgmRKw=",
+    "available": true
+  }' -i
+
+### Delete - DELETE
+- Remove a menu item by name
+curl -b cookies.txt -X DELETE https://comp3810sef-group16.onrender.com/api/menu/name/Apple%20Juice -i
+
