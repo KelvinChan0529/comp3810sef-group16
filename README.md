@@ -65,12 +65,12 @@
 
 ### views folder
 
-- `login.ejs` & `register.ejs`: Complete user onboarding flow (register → login)
-- `homepage.ejs`: The main navigation gateway for authenticated users in the food ordering system.
+- **login.ejs** & **register.ejs**: Complete user onboarding flow (register → login)
+- **homepage.ejs**: The main navigation gateway for authenticated users in the food ordering system.
   - Customer Mode: Browse and order food
   - Admin Mode: Manage the menu (CRUD operations)
 
-- `order.ejs`:
+- **order.ejs**:
   - Browse Menu by Category
   - Visual Item Cards
   - Real-Time Shopping Cart Sidebar
@@ -105,13 +105,13 @@
 
 ### UI files
 
-- `style.css`: Used exclusively for Login / Register / Homepage (the public/auth pages)
-- `styles.css`: Used for all internal authenticated pages (/order, /menu, etc.)
+- **style.css**: Used exclusively for `Login` / `Register` / `Homepage` (the public/auth pages)
+- **styles.css**: Used for all internal authenticated pages (`/order`, `/menu`, etc.)
 
 ### models folder
 
-- `MenuItem.js`: It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.
-- `Order.js`: It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.
+- **MenuItem.js**: It is a Mongoose model with full validation, smart indexing for blazing-fast queries, and text search support.
+- **Order.js**: It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.
 
 ## Live Demo
 
