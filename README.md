@@ -63,6 +63,9 @@
   - One for menu & orders (Mongoose + food-ordering database)
 - Uses Mongoose models: `MenuItem` and `Order`
 
+### seed.js
+- Connects to your MongoDB Atlas food-ordering database using Mongoose
+
 ### views folder
 
 - **login.ejs** & **register.ejs**: Complete user onboarding flow (register → login)
