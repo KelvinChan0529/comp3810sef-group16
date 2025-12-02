@@ -114,7 +114,7 @@
 - **Order.js**: It is an Order model that perfectly supports a real-world food ordering system. Order model with full lifecycle status tracking, denormalized item snapshots for reliable history, proper referencing, and optimized indexes.
 
 
-### The cloud-based server URL
+## The cloud-based server URL
 https://comp3810sef-group16.onrender.com/
 
 ## Operation Guides
@@ -139,7 +139,7 @@ password : guest
 ### 3. Logout
 - Click the "Logout" button in the middle.
 - Back to the Login page
-
+  
 ### CRUD Web Pages
 
 #### Create
